@@ -12,8 +12,12 @@ jobs:
       - name: Build mocklinux
         working-directory: mocklinux
         run: make
+
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
 
